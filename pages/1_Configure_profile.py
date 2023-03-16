@@ -36,7 +36,7 @@ def app():
     cnt=0
     # Add labels dynamically
     opts = []
-    while st.button(" + New Label"):
+    while st.button(" New Label"):
         cnt+=1
         label = st.text_input("Label Name", key=cnt)
         if label:
