@@ -151,9 +151,6 @@ if __name__ == "__main__":
     # File uploader
     pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
-    # Number input field
-   
-
     # Display selected page
     if pdf_file is not None:
         # pdf_layout = lp.load_pdf(pdf_file)
@@ -161,49 +158,49 @@ if __name__ == "__main__":
         zoom = 1
         mat = fitz.Matrix(zoom, zoom)
         count = doc.page_count  # Use the built-in page count property
-        # page_number = max(1, min(count, page_number))
-        # col1, col2 = st.beta_columns([PAGE_WIDTH, PAGE_WIDTH])
-        # with col1:
-        page_number = st.number_input(
-        "Page number", min_value=1, value=1, step=1)
-        
-        val = f"image_{page_number}.png"
-        page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
-        pix = page.get_pixmap(matrix=mat)
-        pix.save(val)
+    
+       for p in doc:
+        count += 1
+       for i in range(count):
+            val = f"image_{i+1}.png"
+            page = doc.load_page(i)
+            pix = page.get_pixmap(matrix=mat)
+            pix.save(val)map(matrix=mat)
+            pix.save(val)
         # docImg = val
-        st.write(val)
-        docImg = Image.open(val)
-        st.write(docImg)
+        doc.close()
+        # st.write(val)
 
-        ui_width = st_js.st_javascript("window.innerWidth")
-        st.write(ui_width)
+    docImg = st.image(val)
+    st.image(docImg)
 
-        with open("docs/json/download.json", "r") as f:
-                saved_state = json.load(f)
-        assign_labels = st.checkbox("Assign Labels", True)
-        mode = "transform" if assign_labels else "rect"
-        data_processor = DataProcessor()
-        
-        
-        doc_height = docImg.height
-        doc_width = docImg.width
-        height = doc_height
-        width = doc_width
-        st.write(doc_height,doc_width)
-        if ui_width > 500:
-            canvas_width = math.floor(38 * ui_width / 100)
-        else:
-            canvas_width = ui_width
-            # canvas_width = 2040
-        result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
-        st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
-        st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
+    ui_width = st_js.st_javascript("window.innerWidth")
+    st.write(ui_width)
 
-            # st.image(val)
-            # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
-            # run( val, "docs/json/download.json", custom_labels)
-        # with col2:
-        #     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
-        # Clean up
-        # doc.close()
+    with open("docs/json/download.json", "r") as f:
+            saved_state = json.load(f)
+    assign_labels = st.checkbox("Assign Labels", True)
+    mode = "transform" if assign_labels else "rect"
+    data_processor = DataProcessor()
+
+
+    doc_height = docImg.height
+    doc_width = docImg.width
+    height = doc_height
+    width = doc_width
+    st.write(doc_height,doc_width)
+    if ui_width > 500:
+        canvas_width = math.floor(38 * ui_width / 100)
+    else:
+        canvas_width = ui_width
+        # canvas_width = 2040
+    result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
+    st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
+    st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
+
+        # st.image(val)
+        # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
+    # run( val, "docs/json/download.json", custom_labels)
+# with col2:
+#     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
+# Clean up
