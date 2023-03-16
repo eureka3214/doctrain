@@ -71,10 +71,10 @@ def run(img_file, rects_file, labels):
             if selected_index is not None and selected_index != -1:
 
                 with st.form(key="fields_form"):
-                    
+
                     selected_rect = result_rects.rects_data['words'][selected_index]
                     value = st.text_input("Value", selected_rect['value'], key=f"field_value_{selected_index}")
-                    label = st.selectbox("Label", labels, key=f"label_{selected_index}", value=selected_rect['label'])
+                    label = st.selectbox("Label", labels, key=f"label_{selected_index}")
                     st.markdown("---")
                     submit = st.form_submit_button("Save", type="primary")
                     if submit:
