@@ -70,9 +70,7 @@ def run(img_file, rects_file, labels):
                              result_rects.rects_data['words'][result_rects.current_rect_index]['value'])
                     st.markdown("---")
 
-                # if ui_width > 1500:
-                # render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
-                render_form_element(rect, labels, result_rects.current_rect_index, result_rects, data_processor)
+                render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
                 submit = st.form_submit_button("Save", type="primary")
                 if submit:
                     with open(rects_file, "w") as f:
@@ -83,23 +81,23 @@ def run(img_file, rects_file, labels):
                     st.write("Saved!")
 
 
-# def render_form_wide(words, labels, result_rects, data_processor):
-#     col1_form, col2_form, col3_form, col4_form = st.columns([1, 1, 1, 1])
-#     num_rows = math.ceil(len(words) / 4)
+def render_form_wide(words, labels, result_rects, data_processor):
+    col1_form, col2_form, col3_form, col4_form = st.columns([1, 1, 1, 1])
+    num_rows = math.ceil(len(words) / 4)
 
-#     for i, rect in enumerate(words):
-#         if i < num_rows:
-#             with col1_form:
-#                 render_form_element(rect, labels, i, result_rects, data_processor)
-#         elif i < num_rows * 2:
-#             with col2_form:
-#                 render_form_element(rect, labels, i, result_rects, data_processor)
-#         elif i < num_rows * 3:
-#             with col3_form:
-#                 render_form_element(rect, labels, i, result_rects, data_processor)
-#         else:
-#             with col4_form:
-#                 render_form_element(rect, labels, i, result_rects, data_processor)
+    for i, rect in enumerate(words):
+        if i < num_rows:
+            with col1_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        elif i < num_rows * 2:
+            with col2_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        elif i < num_rows * 3:
+            with col3_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        else:
+            with col4_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
 
 
 
@@ -114,7 +112,6 @@ def render_form_element(rect, labels, i, result_rects, data_processor):
     label = st.selectbox("Label", labels, key=f"label_{i}", index=default_index,
                          disabled=False if i == result_rects.current_rect_index else True)
     st.markdown("---")
-
     data_processor.update_rect_data(result_rects.rects_data, i, value, label)
 
 
