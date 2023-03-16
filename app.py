@@ -65,11 +65,8 @@ def run(img_file, rects_file, labels):
     with col2:
 
         if result_rects is not None:
-
             selected_index = result_rects.current_rect_index
-
             if selected_index is not None and selected_index != -1:
-
                 with st.form(key="fields_form"):
                     
                     selected_rect = result_rects.rects_data['words'][selected_index]
@@ -136,7 +133,7 @@ def canvas_available_width(ui_width):
 
 if __name__ == "__main__":
     page_number = st.number_input("Page number", min_value=1, value=1, step=1)
-    custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
+    custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if page_number:
         imval = f"image_{page_number}.png"
         jval =  f"json_annot_{page_number}.json"
