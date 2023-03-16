@@ -17,6 +17,9 @@ uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 if uploaded_file is not None:
     # Load PDF document
     doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+    zoom = 4
+    mat = fitz.Matrix(zoom, zoom)
+    count = 0
     page_num = st.number_input("Enter a page number", value=1, min_value=0, step=1)
 
 
@@ -25,7 +28,9 @@ if uploaded_file is not None:
 
     # Render page as image and display on left half of screen
     with st.container():
-        st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
+        pix = page.get_pixmap(matrix=mat)
+        st.image(pix)
+        # st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
 
     # Clean up
     doc.close()
