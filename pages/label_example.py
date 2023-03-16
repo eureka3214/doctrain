@@ -29,7 +29,7 @@ def run(img_file, label_data_file):
         display_toolbar=True,
         update_streamlit=True,
         canvas_width=ui_width,
-        height= img.height
+        height= img.height,
         image_rescale = True,
         key="doc_annotation"
     )
