@@ -73,7 +73,8 @@ def run(img_file, rects_file, labels):
                 with st.form(key="fields_form"):
                     
                     selected_rect = result_rects.rects_data['words'][selected_index]
-                    x1, y1, x2, y2 = selected_rect["x1"], selected_rect["y1"], selected_rect["x2"], selected_rect["y2"]
+                    re = selected_rect["rect"]
+                    x1, y1, x2, y2 = re["x1"], re["y1"], re["x2"], re["y2"]
                     value = st.text_input("Value", value=f"x1={x1}, y1={y1}, x2={x2}, y2={y2}", key=f"field_value_{selected_index}")
                     label = st.selectbox("Label", labels, key=f"label_{selected_index}", index=selected_index)
                     st.markdown("---")
