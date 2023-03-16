@@ -4,7 +4,7 @@ import streamlit as st
 default_data = {
     "meta": {
         "version": "v0.1",
-        "name": "train",
+        "name": "Indian Bank Structure",
         "image_id": 1001,
         "image_size": {
             "width": 510,
