@@ -12,12 +12,13 @@ def main():
     uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
 
     # Page number input
-    page_num = st.number_input("Enter a page number", value=1, min_value=1, max_value=get_num_pages(uploaded_file), step=1)
 
     # Display selected page
     if uploaded_file is not None:
         # Load PDF document
         doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+        page_num = st.number_input("Enter a page number", value=1, min_value=0, max_value=get_num_pages(uploaded_file), step=1)
+
 
         # Get selected page
         page = doc.load_page(page_num - 1)
