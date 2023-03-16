@@ -173,7 +173,8 @@ if __name__ == "__main__":
             pix.save(val)
             # docImg = val
             # st.write(docImg)
-            st.write(val)
+            docImg = Image.open(val)
+            st.write(docImg)
             ui_width = st_js.st_javascript("window.innerWidth")
 
             if 'saved_state' not in st.session_state:
@@ -191,7 +192,7 @@ if __name__ == "__main__":
             doc_height = 2026
             doc_width = 1460
             canvas_width = ui_width
-            result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=val, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
+            result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
             st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
             st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
 
