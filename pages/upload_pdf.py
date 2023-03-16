@@ -11,33 +11,16 @@ def save_json(data, filename):
     with open(filename, "w") as outfile:
         json.dump(data, outfile)
 
+st.title("Paste profile configurations and Upload PDF")
 
 
-default_data = {
-    "meta": {
-        "version": "v0.1",
-        "split": "train",
-        "image_id": 1001,
-        "image_size": {
-            "width": 510,
-            "height": 708
-        }
-    },
-    "words": [
-        {
-            "rect": {
-                "x1": 97,
-                "y1": 57,
-                "x2": 423,
-                "y2": 80
-            },
-            "value": "",
-            "label": "Subtopic"
-        }
-    ]
-}
+json_string = st.text_area("Enter JSON string")
 
-st.title("PDF Viewer")
+# Parse the JSON string and save it to a variable
+try:
+    default_data = json.loads(json_string)
+except json.JSONDecodeError:
+    st.error("Invalid JSON string")
 
 
 # File uploader

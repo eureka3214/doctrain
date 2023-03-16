@@ -27,17 +27,9 @@ default_data = {
 
 # Define the Streamlit app
 def app():
-    # Create input fields for the JSON tags
-    # version = st.text_input("Meta version", default_data["meta"]["version"])
     version = default_data['meta']['version']
-# Increment the version number
     new_version = f"v{float(version[1:])+0.1:.1f}"
-# Update the version number in the JSON
-    # data['meta']['version'] = new_version
     split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
-  
-
-    # Construct the new JSON from the input fields
     new_data = {
         "meta": {
             "version": new_version,
@@ -61,9 +53,6 @@ def app():
             }
         ]
     }
-
-    # Display the resulting JSON
     st.code(json.dumps(new_data, indent=4))
-
 
 app()
