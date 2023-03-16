@@ -63,7 +63,7 @@ def run(img_file, rects_file, labels):
         st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
 
     with col2:
-        if result_rects is not None:
+        # if result_rects is not None:
         if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
 
             current_rect = result_rects.rects_data['words'][result_rects.current_rect_index]
