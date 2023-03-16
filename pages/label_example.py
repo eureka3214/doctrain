@@ -134,7 +134,7 @@ def canvas_available_width(ui_width):
 if __name__ == "__main__":
     # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     # run("docs/image/download.png", "docs/json/download.json", custom_labels)
-    ui_width = st_js.st_javascript("window.innerWidth")
+    # ui_width = st_js.st_javascript("window.innerWidth")
     # Set page width to half of the screen width
     # PAGE_WIDTH = ui_width/2
 
