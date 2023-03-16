@@ -110,13 +110,13 @@ def render_form_mobile(words, labels, result_rects, data_processor):
         render_form_element(rect, labels, i, result_rects, data_processor)
 
 
-def render_form_element(rect, labels, index, result_rects, data_processor):
-    st.write(f"{index + 1}. {rect['value']}")
-    label_value = result_rects.rects_data['words'][index]['label'] if 'label' in result_rects.rects_data['words'][index] else ''
+def render_form_element(rect, labels, i, result_rects, data_processor):
+    st.write(f"{i + 1}. {rect['value']}")
+    label_value = result_rects.rects_data['words'][i]['label'] if 'label' in result_rects.rects_data['words'][i] else ''
     label_value += f" (x:{rect['x']}, y:{rect['y']}, w:{rect['width']}, h:{rect['height']})"
-    label_key = f"label_{index}"
+    label_key = f"label_{i}"
     label_options = [''] + labels
-    selected_label = st.selectbox("Label", options=label_options, key=label_key, index=labels.index(label_value) if label_value in labels else 0)
+    selected_label = st.selectbox("Label", options=label_options, key=label_key, i=labels.i(label_value) if label_value in labels else 0)
     if selected_label == '':
         data_processor.remove_key(label_key)
     else:
