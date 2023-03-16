@@ -64,3 +64,6 @@ def app():
 
     # Display the resulting JSON
     st.code(json.dumps(new_data, indent=4))
+
+
+app()
