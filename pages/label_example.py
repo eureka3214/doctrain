@@ -144,7 +144,7 @@ if __name__ == "__main__":
     # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     # run("docs/image/download.png", "docs/json/download.json", custom_labels)
     # Set page width to half of the screen width
-    PAGE_WIDTH = ui_width/2
+    # PAGE_WIDTH = ui_width/2
 
     st.title("PDF Viewer")
 
