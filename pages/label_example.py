@@ -18,7 +18,7 @@ def run(img_file, label_data_file):
         stroke_color="rgba(0, 50, 255, 0.7)",
         background_image=img,
   
-        drawing_mode="transform",
+        drawing_mode="rect",
         display_toolbar=True,
         update_streamlit=True,
         canvas_width=ui_width,
