@@ -72,6 +72,7 @@ def run(img_file, rects_file, labels):
 
                 # if ui_width > 1500:
                 # render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
+                render_form_element(rect, labels, result_rects.current_rect_index, result_rects, data_processor)
                 submit = st.form_submit_button("Save", type="primary")
                 if submit:
                     with open(rects_file, "w") as f:
