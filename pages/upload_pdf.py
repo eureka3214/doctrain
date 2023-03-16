@@ -18,7 +18,7 @@ page_number = st.number_input(
 if pdf_file is not None:
     # pdf_layout = lp.load_pdf(pdf_file)
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
-    zoom = 4
+    zoom = 4  
     mat = fitz.Matrix(zoom, zoom)
     count = doc.page_count  # Use the built-in page count property
     
