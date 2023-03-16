@@ -18,6 +18,7 @@ def run(img_file, label_data_file):
             return math.floor(38 * ui_width / 100)
         else:
             return ui_width
+
     ui_width = st_js.st_javascript("window.innerWidth")
     img = Image.open(img_file)
     st.write(img)
@@ -32,6 +33,8 @@ def run(img_file, label_data_file):
     width = 864
     doc_height = img.height
     doc_width  = img.width
+
+    st.write(doc_height)
     canvas_wid = canvas_available_width(ui_width)
 
     result_rects = st_sparrow_labeling(
