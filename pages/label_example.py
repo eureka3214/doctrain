@@ -179,12 +179,8 @@ if __name__ == "__main__":
             ui_width = st_js.st_javascript("window.innerWidth")
             st.write(ui_width)
 
-            if 'saved_state' not in st.session_state:
-                with open(rects_file, "r") as f:
+            with open("docs/json/download.json", "r") as f:
                     saved_state = json.load(f)
-                    st.session_state['saved_state'] = saved_state
-            else:
-                saved_state = st.session_state['saved_state']
             assign_labels = st.checkbox("Assign Labels", True)
             mode = "transform" if assign_labels else "rect"
             data_processor = DataProcessor()
