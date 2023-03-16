@@ -15,7 +15,7 @@ import math
 
 st.set_page_config(page_title="Sparrow Labeling", layout="wide")
 def run(img_file, rects_file, labels):
-    
+    ui_width = st_js.st_javascript("window.innerWidth")
     docImg = Image.open(img_file)
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     # run("docs/image/download.png", "docs/json/download.json", custom_labels)
     ui_width = st_js.st_javascript("window.innerWidth")
     # Set page width to half of the screen width
-    PAGE_WIDTH = ui_width/2
+    # PAGE_WIDTH = ui_width/2
 
     st.title("PDF Viewer")
 
