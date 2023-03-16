@@ -18,7 +18,7 @@ def run(img_file, label_data_file):
             return ui_width
     ui_width = st_js.st_javascript("window.innerWidth")
     img = Image.open(img_file)
-    
+    st.write(img)
     if 'saved_state' not in st.session_state:
         with open(label_data_file, "r") as f:
             saved_state = json.load(f)
