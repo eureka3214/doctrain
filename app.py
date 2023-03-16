@@ -74,7 +74,7 @@ def run(img_file, rects_file, labels):
                     
                     selected_rect = result_rects.rects_data['words'][selected_index]
                     value = st.text_input("Value", selected_rect['value'], key=f"field_value_{selected_index}")
-                    label = st.selectbox("Label", labels, key=f"label_{selected_index}", selected_rect['label'])
+                    label = st.selectbox("Label", labels, key=f"label_{selected_index}", index=selected_index)
                     st.markdown("---")
                     submit = st.form_submit_button("Save", type="primary")
                     if submit:
