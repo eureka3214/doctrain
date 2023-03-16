@@ -1,6 +1,6 @@
 import streamlit as st
 import fitz  # PyMuPDF
-import streamlit_javascript as st_js
+# import streamlit_javascript as st_js
 
 
 
