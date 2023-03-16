@@ -17,12 +17,6 @@ st.set_page_config(page_title="Sparrow Labeling", layout="wide")
 def run(img_file, rects_file, labels):
     
     docImg = Image.open(img_file)
-    if 'saved_state' not in st.session_state:
-        with open(rects_file, "r") as f:
-            saved_state = json.load(f)
-            st.session_state['saved_state'] = saved_state
-    else:
-        saved_state = st.session_state['saved_state']
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
     data_processor = DataProcessor()
@@ -31,8 +25,8 @@ def run(img_file, rects_file, labels):
     with col1:
         height = 1296
         width = 864
-        doc_height = saved_state['meta']['image_size']['height']
-        doc_width = saved_state['meta']['image_size']['width']
+        doc_height = 708
+        doc_width = 510
         canvas_width = canvas_available_width(ui_width)
         result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
         st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
@@ -59,7 +53,7 @@ def run(img_file, rects_file, labels):
                         json.dump(result_rects.rects_data, f, indent=2)
                     with open(rects_file, "r") as f:
                         saved_state = json.load(f)
-                        st.session_state['saved_state'] = saved_state
+                       
                     st.write("Saved!")
 
 
