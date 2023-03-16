@@ -2,11 +2,13 @@ from PIL import Image
 import streamlit as st
 from streamlit_sparrow_labeling import st_sparrow_labeling
 import json
+import streamlit_javascript as st_js
+
 
 st.set_page_config(page_title="Sparrow Labeling", layout="wide")
 
 def run(img_file, label_data_file):
-    ui_width = st.session_state['width']
+    ui_width = st_js.st_javascript("window.innerWidth")
     img = Image.open(img_file)
     
     if 'saved_state' not in st.session_state:
