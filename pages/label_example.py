@@ -185,10 +185,11 @@ if __name__ == "__main__":
             mode = "transform" if assign_labels else "rect"
             data_processor = DataProcessor()
             
-            height = 2040
-            width = 2832
+            
             doc_height = docImg.height
             doc_width = docImg.width
+            height = doc_height
+            width = doc_width
             st.write(doc_height,doc_width)
             if ui_width > 500:
                 canvas_width = math.floor(38 * ui_width / 100)
