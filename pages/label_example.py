@@ -13,6 +13,7 @@ from streamlit_sparrow_labeling import DataProcessor
 import json
 import math
 
+st.set_page_config(page_title="Sparrow Labeling", layout="wide")
 
 def run(img_file, rects_file, labels):
     
