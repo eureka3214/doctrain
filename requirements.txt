@@ -1,4 +1,4 @@
-streamlit >= 1.15.0
+streamlit
 streamlit-nested-layout
 streamlit-javascript
 streamlit-sparrow-labeling
