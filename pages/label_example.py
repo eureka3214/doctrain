@@ -85,7 +85,6 @@ with col1:
     run(img_file, label_data_file)
 
 with col2:
-    page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)
     st.image(val)
 
 
