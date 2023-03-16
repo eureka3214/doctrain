@@ -57,7 +57,7 @@ if pdf_file is not None:
     
     # Make sure the selected page number is within bounds
     # page_number = max(1, min(count, page_number))
-    col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH])
+    col1, col2 = st.columns(2,2)
     with col1:
         val = f"image_{page_number}.png"
         page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
