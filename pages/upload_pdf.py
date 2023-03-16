@@ -9,27 +9,26 @@ PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")
 st.title("PDF Viewer")
 
 # File uploader
-uploaded_file = st.file_uploader("Upload a PDF file", type="pdf")
+pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 # Page number input
 
 # Display selected page
-if uploaded_file is not None:
-    # Load PDF document
-    doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+if pdf_file is not None:
+    # pdf_layout = lp.load_pdf(pdf_file)
+    doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
     count = 0
-    page_num = st.number_input("Enter a page number", value=1, min_value=0, step=1)
-
-
-    # Get selected page
-    page = doc.load_page(page_num - 1)
-
-    # Render page as image and display on left half of screen
-    with st.container():
+    
+    # Count variable is to get the number of pages in the pdf
+    for p in doc:
+        count += 1
+    for i in range(count):
+        val = f"image_{i+1}.png"
+        page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
-        st.image(pix)
+        pix.save(val)
         # st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
 
     # Clean up
