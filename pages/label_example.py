@@ -19,19 +19,27 @@ def run(img_file, label_data_file):
     else:
         saved_state = st.session_state['saved_state']
     
+    height = 1296
+    width = 864
+    doc_height = img.height
+    doc_width  = img.width
+
     result_rects = st_sparrow_labeling(
-        fill_color="rgba(0, 151, 255, 0.3)",
-        stroke_width=2,
-        stroke_color="rgba(0, 50, 255, 0.7)",
-        background_image=img,
-        initial_rects=saved_state,
-        drawing_mode="transform",
-        display_toolbar=True,
-        update_streamlit=True,
-        canvas_width=img.width,
-        height=img.height,
-        image_rescale = True,
-        key="doc_annotation"
+       fill_color="rgba(0, 151, 255, 0.3)",
+            stroke_width=2,
+            stroke_color="rgba(0, 50, 255, 0.7)",
+            background_image=img,
+            initial_rects=saved_state,
+            height=height,
+            width=width,
+            drawing_mode=mode,
+            display_toolbar=True,
+            update_streamlit=True,
+            canvas_width=canvas_width,
+            doc_height=doc_height,
+            doc_width=doc_width,
+            image_rescale=True,
+            key="doc_annotation"
     )
     
     
