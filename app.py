@@ -166,4 +166,4 @@ def canvas_available_width(ui_width):
 
 if __name__ == "__main__":
     custom_labels = ["", "item", "item_price", "subtotal", "tax", "total"]
-    run("docs/image/receipt_00001.png", "docs/json/receipt_00001.json", custom_labels)
+    run("docs/image/download.png", "docs/json/download.json", custom_labels)
