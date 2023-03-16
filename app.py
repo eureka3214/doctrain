@@ -62,28 +62,30 @@ def run(img_file, rects_file, labels):
                    "annotate the document.")
         st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
 
-       with col2:
-        if result_rects is not None:
-            selected_index = result_rects.current_rect_index
+    with col2:
 
-            if selected_index is not None and selected_index != -1:
-                with st.form(key="fields_form"):
-                    selected_rect = result_rects.rects_data['words'][selected_index]
-                    value = st.text_input("Value", selected_rect['value'], key=f"field_value_{selected_index}")
-                    label = st.selectbox("Label", labels, key=f"label_{selected_index}", value=selected_rect['label'])
-                    st.markdown("---")
-                    submit = st.form_submit_button("Save", type="primary")
-                    if submit:
-                        result_rects.rects_data['words'][selected_index]['value'] = value
-                        result_rects.rects_data['words'][selected_index]['label'] = label
-                        with open(rects_file, "w") as f:
-                            json.dump(result_rects.rects_data, f, indent=2)
-                        with open(rects_file, "r") as f:
-                            saved_state = json.load(f)
-                            st.session_state['saved_state'] = saved_state
-                        st.write("Saved!")
-            else:
-                st.write("No field selected.")
+    if result_rects is not None:
+        
+        selected_index = result_rects.current_rect_index
+
+        if selected_index is not None and selected_index != -1:
+            with st.form(key="fields_form"):
+                selected_rect = result_rects.rects_data['words'][selected_index]
+                value = st.text_input("Value", selected_rect['value'], key=f"field_value_{selected_index}")
+                label = st.selectbox("Label", labels, key=f"label_{selected_index}", value=selected_rect['label'])
+                st.markdown("---")
+                submit = st.form_submit_button("Save", type="primary")
+                if submit:
+                    result_rects.rects_data['words'][selected_index]['value'] = value
+                    result_rects.rects_data['words'][selected_index]['label'] = label
+                    with open(rects_file, "w") as f:
+                        json.dump(result_rects.rects_data, f, indent=2)
+                    with open(rects_file, "r") as f:
+                        saved_state = json.load(f)
+                        st.session_state['saved_state'] = saved_state
+                    st.write("Saved!")
+        else:
+            st.write("No field selected.")
 
 
 def render_form_wide(words, labels, result_rects, data_processor):
