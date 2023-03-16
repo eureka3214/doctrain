@@ -141,6 +141,7 @@ def canvas_available_width(ui_width):
 
 
 if __name__ == "__main__":
+
     # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     # run("docs/image/download.png", "docs/json/download.json", custom_labels)
     # Set page width to half of the screen width
@@ -153,21 +154,25 @@ if __name__ == "__main__":
 
     # Display selected page
     if pdf_file is not None:
+
         # pdf_layout = lp.load_pdf(pdf_file)
         doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
         zoom = 1
         mat = fitz.Matrix(zoom, zoom)
         count = doc.page_count  # Use the built-in page count property
         for p in doc:
+
             count += 1
+
         for i in range(count):
+            
             val = f"image_{i+1}.png"
             page = doc.load_page(i)
             pix = page.get_pixmap(matrix=mat)
             # pix.save(val)map(matrix=mat)
             pix.save(val)
         # docImg = val
-        doc.close()
+    doc.close()
         # st.write(val)
 
     docImg = st.image(val)
