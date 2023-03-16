@@ -71,14 +71,14 @@ def run(img_file, rects_file, labels):
                     st.markdown("---")
 
                 render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
-                submit = st.form_submit_button("Save", type="primary")
-                if submit:
-                    with open(rects_file, "w") as f:
-                        json.dump(result_rects.rects_data, f, indent=2)
-                    with open(rects_file, "r") as f:
-                        saved_state = json.load(f)
-                        st.session_state['saved_state'] = saved_state
-                    st.write("Saved!")
+                # submit = st.form_submit_button("Save", type="primary")
+                # if submit:
+                #     with open(rects_file, "w") as f:
+                #         json.dump(result_rects.rects_data, f, indent=2)
+                #     with open(rects_file, "r") as f:
+                #         saved_state = json.load(f)
+                #         st.session_state['saved_state'] = saved_state
+                #     st.write("Saved!")
 
 def render_form_wide(words, labels, result_rects, data_processor):
     if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
