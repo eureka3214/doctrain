@@ -166,35 +166,35 @@ if __name__ == "__main__":
         # with col1:
         page_number = st.number_input(
         "Page number", min_value=1, value=1, step=1)
-        if page_number:
-            val = f"image_{page_number}.png"
-            page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
-            pix = page.get_pixmap(matrix=mat)
-            pix.save(val)
-            # docImg = val
-            st.write(val)
-            docImg = Image.open(val)
-            st.write(docImg)
+        
+        val = f"image_{page_number}.png"
+        page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
+        pix = page.get_pixmap(matrix=mat)
+        pix.save(val)
+        # docImg = val
+        st.write(val)
+        docImg = Image.open(val)
+        st.write(docImg)
 
-            ui_width = st_js.st_javascript("window.innerWidth")
-            st.write(ui_width)
+        ui_width = st_js.st_javascript("window.innerWidth")
+        st.write(ui_width)
 
-            with open("docs/json/download.json", "r") as f:
-                    saved_state = json.load(f)
-            assign_labels = st.checkbox("Assign Labels", True)
-            mode = "transform" if assign_labels else "rect"
-            data_processor = DataProcessor()
-            
-            
-            doc_height = docImg.height
-            doc_width = docImg.width
-            height = doc_height
-            width = doc_width
-            st.write(doc_height,doc_width)
-            if ui_width > 500:
-                canvas_width = math.floor(38 * ui_width / 100)
-            else:
-                canvas_width = ui_width
+        with open("docs/json/download.json", "r") as f:
+                saved_state = json.load(f)
+        assign_labels = st.checkbox("Assign Labels", True)
+        mode = "transform" if assign_labels else "rect"
+        data_processor = DataProcessor()
+        
+        
+        doc_height = docImg.height
+        doc_width = docImg.width
+        height = doc_height
+        width = doc_width
+        st.write(doc_height,doc_width)
+        if ui_width > 500:
+            canvas_width = math.floor(38 * ui_width / 100)
+        else:
+            canvas_width = ui_width
             # canvas_width = 2040
         result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
         st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
@@ -206,4 +206,4 @@ if __name__ == "__main__":
         # with col2:
         #     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
         # Clean up
-        doc.close()
+        # doc.close()
