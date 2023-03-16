@@ -32,7 +32,7 @@ def run(img_file, label_data_file):
             initial_rects=saved_state,
             height=height,
             width=width,
-            drawing_mode=mode,
+            drawing_mode="transform",
             display_toolbar=True,
             update_streamlit=True,
             canvas_width=canvas_width,
