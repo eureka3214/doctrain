@@ -70,41 +70,29 @@ st.title("PDF Viewer")
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
 # Number input field
-page_number = st.number_input(
-    "Page number", min_value=1, value=1, step=1)
+page_number = st.number_input("Page number", min_value=1, value=1, step=1)
 
 # Display selected page
-if pdf_file is not None:
-    # pdf_layout = lp.load_pdf(pdf_file)
-    doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
-    zoom = 1  
-    mat = fitz.Matrix(zoom, zoom)
-    count = doc.page_count  # Use the built-in page count property
-    
+
     # Make sure the selected page number is within bounds
     # page_number = max(1, min(count, page_number))
-    col1, col2 = st.columns(2)
-    with col1:
-        val = f"image_{page_number}.png"
-        page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
-        pix = page.get_pixmap(matrix=mat)
-        pix.save(val)
-        # st.image(val)
-        img_file = val
-        label_data_file = "docs/json/download.json"
-        run(img_file, label_data_file)
+col1, col2 = st.columns(2)
+with col1:
+    val = f"image_{page_number}.png"
+    page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
+    pix = page.get_pixmap(matrix=mat)
+    pix.save(val)
+    # st.image(val)
+    img_file = val
+    label_data_file = "docs/json/download.json"
+    run(img_file, label_data_file)
 
-    with col2:
-        page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)
+with col2:
+    page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)
 
     # Extract the selected page as an image
     
     
     # Display the image and the number input field
-    
-    # Clean up
-    doc.close()
-
-
 
 
