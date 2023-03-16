@@ -136,5 +136,6 @@ if __name__ == "__main__":
     page_number = st.number_input("Page number", min_value=1, value=1, step=1)
     custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if page_number:
-        val = f"image_{page_number}.png"
-        run(val, "docs/json/download.json", custom_labels)
+        imval = f"image_{page_number}.png"
+        jval =  f"image_{page_number}.png"
+        run(imval, jval, custom_labels)
