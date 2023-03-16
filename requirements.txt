@@ -2,3 +2,4 @@ streamlit >= 1.15.0
 streamlit-nested-layout
 streamlit-javascript
 streamlit-sparrow-labeling
+Pillow
