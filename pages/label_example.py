@@ -170,8 +170,8 @@ if __name__ == "__main__":
             val = f"image_{page_number}.png"
             page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
             pix = page.get_pixmap(matrix=mat)
-            pix.save(val)
-            docImg = val
+            docImg= pix.save(val)
+            # docImg = val
             # st.image(docImg)
             ui_width = st_js.st_javascript("window.innerWidth")
 
