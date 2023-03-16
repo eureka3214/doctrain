@@ -170,7 +170,7 @@ if __name__ == "__main__":
             val = f"image_{page_number}.png"
             page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
             pix = page.get_pixmap(matrix=mat)
-            docImg= pix.save(val)
+            pix.save(val)
             # docImg = val
             st.write(docImg)
             st.write(val)
