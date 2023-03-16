@@ -3,7 +3,7 @@ import fitz  # PyMuPDF
 import streamlit_javascript as st_js
 
 # Set page width to half of the screen width
-PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")
+PAGE_WIDTH =  int(st_js.st_javascript("window.innerWidth"))/2
 
 
 st.title("PDF Viewer")
@@ -29,7 +29,8 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        st.image(val)
+        with st.container():
+            st.image(val, width=PAGE_WIDTH)
         # st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
 
     # Clean up
