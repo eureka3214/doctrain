@@ -31,8 +31,8 @@ def run(img_file, rects_file, labels):
 
 
     with col1:
-        height = 1296
-        width = 864
+        height = 2026
+        width = 1460
         doc_height = 2026
         doc_width = 1460
         canvas_width = canvas_available_width(ui_width)
