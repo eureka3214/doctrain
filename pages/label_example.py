@@ -143,7 +143,6 @@ def canvas_available_width(ui_width):
 if __name__ == "__main__":
     # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     # run("docs/image/download.png", "docs/json/download.json", custom_labels)
-    ui_width = st_js.st_javascript("window.innerWidth")
     # Set page width to half of the screen width
     PAGE_WIDTH = ui_width/2
 
@@ -172,9 +171,34 @@ if __name__ == "__main__":
             page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
             pix = page.get_pixmap(matrix=mat)
             pix.save(val)
+            docImg = val
+            # st.image(docImg)
+            ui_width = st_js.st_javascript("window.innerWidth")
+
+            if 'saved_state' not in st.session_state:
+                with open(rects_file, "r") as f:
+                    saved_state = json.load(f)
+                    st.session_state['saved_state'] = saved_state
+            else:
+                saved_state = st.session_state['saved_state']
+            assign_labels = st.checkbox("Assign Labels", True)
+            mode = "transform" if assign_labels else "rect"
+            data_processor = DataProcessor()
+            col1, col2 = st.columns([6, 6])
+
+            with col1:
+                height = 2026
+                width = 1460
+                doc_height = 2026
+                doc_width = 1460
+                canvas_width = ui_width
+                result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=docImg, initial_rects=saved_state, height=height,width=width, drawing_mode=mode, display_toolbar=True, update_streamlit=True, canvas_width=canvas_width, doc_height=doc_height, doc_width=doc_width, image_rescale=True, key="doc_annotation" )
+                st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to annotate the document.")
+                st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
+
             # st.image(val)
-            custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
-            run( val, "docs/json/download.json", custom_labels)
+            # custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
+            # run( val, "docs/json/download.json", custom_labels)
         # with col2:
         #     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
         # Clean up
