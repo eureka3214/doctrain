@@ -36,7 +36,7 @@ if pdf_file is not None:
     with col1:
         st.image(val)
     with col2:
-        page_number = st.number_input(
+        page_number = st.sidebar.number_input(
             "Page number", min_value=1, max_value=count, value=page_number, step=1)
 
     # Clean up
