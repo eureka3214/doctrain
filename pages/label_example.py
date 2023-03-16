@@ -17,7 +17,7 @@ import math
 def run(img_file, rects_file, labels):
     
     docImg = Image.open(img_file)
-    st.image{docImg}
+    st.image(docImg)
     if 'saved_state' not in st.session_state:
         with open(rects_file, "r") as f:
             saved_state = json.load(f)
