@@ -161,6 +161,7 @@ if __name__ == "__main__":
         for p in doc:
             count += 1
         for i in range(count):
+            
             val = f"image_{i+1}.png"
             page = doc.load_page(i)
             pix = page.get_pixmap(matrix=mat)
