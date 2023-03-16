@@ -17,12 +17,12 @@ def run(img_file, rects_file, labels):
 
     docImg = Image.open(img_file)
 
-    if 'saved_state' not in st.session_state:
-        with open(rects_file, "r") as f:
-            saved_state = json.load(f)
-            st.session_state['saved_state'] = saved_state
-    else:
-        saved_state = st.session_state['saved_state']
+    # if 'saved_state' not in st.session_state:
+    with open(rects_file, "r") as f:
+        saved_state = json.load(f)
+            # st.session_state['saved_state'] = saved_state
+    # else:
+        # saved_state = st.session_state['saved_state']
 
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
