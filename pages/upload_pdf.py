@@ -1,7 +1,7 @@
 import streamlit as st
 import fitz  # PyMuPDF
 import streamlit_javascript as st_js
-
+from streamlit_sparrow_labeling import st_sparrow_labeling
 # Set page width to half of the screen width
 PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")/2
 
@@ -30,7 +30,9 @@ if pdf_file is not None:
         page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        st.image(val)
+        image = st_sparrow_labeling.image_classification(val)
+        image.label(class_names=["label1", "label2"])
+        # st.image(val)
     with col2:
         page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)
 
