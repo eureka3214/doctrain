@@ -29,7 +29,7 @@ def run(img_file, rects_file, labels):
 
     data_processor = DataProcessor()
 
-    col1, col2 = st.columns([4, 6])
+    col1, col2 = st.columns([6, 4])
 
     with col1:
         height = 1296
