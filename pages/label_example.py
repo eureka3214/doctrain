@@ -12,13 +12,19 @@ def run(img_file, label_data_file):
     ui_width = st_js.st_javascript("window.innerWidth")
     img = Image.open(img_file)
     
-   
+    if 'saved_state' not in st.session_state:
+        with open(label_data_file, "r") as f:
+            saved_state = json.load(f)
+            st.session_state['saved_state'] = saved_state
+    else:
+        saved_state = st.session_state['saved_state']
+    
     result_rects = st_sparrow_labeling(
         fill_color="rgba(0, 151, 255, 0.3)",
         stroke_width=2,
         stroke_color="rgba(0, 50, 255, 0.7)",
         background_image=img,
-  
+        initial_rects=saved_state,
         drawing_mode="rect",
         display_toolbar=True,
         update_streamlit=True,
@@ -26,10 +32,6 @@ def run(img_file, label_data_file):
         key="doc_annotation"
     )
     
-    if result_rects is not None:
-        with open(label_data_file, "w") as f:
-            json.dump(result_rects.rects_data, f, indent=2)
- 
     
     st.image(img)
 
