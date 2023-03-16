@@ -9,6 +9,13 @@ import fitz  # PyMuPDF
 st.set_page_config(page_title="Sparrow Labeling", layout="wide")
 
 def run(img_file, label_data_file):
+
+    def canvas_available_width(ui_width):
+    # Get ~40% of the available width, if the UI is wider than 500px
+        if ui_width > 500:
+            return math.floor(38 * ui_width / 100)
+        else:
+            return ui_width
     ui_width = st_js.st_javascript("window.innerWidth")
     img = Image.open(img_file)
     
@@ -23,6 +30,7 @@ def run(img_file, label_data_file):
     width = 864
     doc_height = img.height
     doc_width  = img.width
+    canvas_wid = canvas_available_width(ui_width)
 
     result_rects = st_sparrow_labeling(
        fill_color="rgba(0, 151, 255, 0.3)",
