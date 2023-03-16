@@ -158,10 +158,9 @@ if __name__ == "__main__":
         zoom = 1
         mat = fitz.Matrix(zoom, zoom)
         count = doc.page_count  # Use the built-in page count property
-    
-       for p in doc:
-        count += 1
-       for i in range(count):
+        for p in doc:
+            count += 1
+        for i in range(count):
             val = f"image_{i+1}.png"
             page = doc.load_page(i)
             pix = page.get_pixmap(matrix=mat)
