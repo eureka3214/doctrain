@@ -29,6 +29,7 @@ if pdf_file is not None:
         page = doc.load_page(i)
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
+        st.image(val)
         # st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
 
     # Clean up
