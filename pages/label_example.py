@@ -168,7 +168,7 @@ if __name__ == "__main__":
             page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
             pix = page.get_pixmap(matrix=mat)
             pat = pix.save(val)
-            st.image(val)
+            # st.image(val)
             custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
             run( pat, "docs/json/download.json", custom_labels)
         with col2:
