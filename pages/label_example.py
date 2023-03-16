@@ -4,6 +4,8 @@ from streamlit_sparrow_labeling import st_sparrow_labeling
 import json
 import streamlit_javascript as st_js
 import fitz  # PyMuPDF
+import streamlit_nested_layout
+import math
 
 
 st.set_page_config(page_title="Sparrow Labeling", layout="wide")
