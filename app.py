@@ -21,7 +21,7 @@ def run(img_file, rects_file, labels):
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
     data_processor = DataProcessor()
-    col1, col2 = st.columns([6, 4])
+    col1, col2 = st.columns([6, 6])
 
     with col1:
         height = 1296
