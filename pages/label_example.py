@@ -16,7 +16,7 @@ import math
 
 def run(img_file, rects_file, labels):
     
-    docImg = img_file
+    docImg = Image.open(img_file)
     if 'saved_state' not in st.session_state:
         with open(rects_file, "r") as f:
             saved_state = json.load(f)
