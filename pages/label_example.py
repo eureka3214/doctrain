@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit_sparrow_labeling import st_sparrow_labeling
 import json
 import streamlit_javascript as st_js
+import fitz  # PyMuPDF
 
 
 st.set_page_config(page_title="Sparrow Labeling", layout="wide")
@@ -50,7 +51,7 @@ page_number = st.number_input(
 if pdf_file is not None:
     # pdf_layout = lp.load_pdf(pdf_file)
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
-    zoom = 4  
+    zoom = 1  
     mat = fitz.Matrix(zoom, zoom)
     count = doc.page_count  # Use the built-in page count property
     
