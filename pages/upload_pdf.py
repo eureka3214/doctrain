@@ -33,8 +33,6 @@ if pdf_file is not None:
         pix.save(val)
         height = 1296
         width = 864
-        doc_height = saved_state['meta']['image_size']['height']
-        doc_width = saved_state['meta']['image_size']['width']
         canvas_width = canvas_available_width(ui_width)
         result_rects = st_sparrow_labeling(fill_color="rgba(0, 151, 255, 0.3)",stroke_width=2, stroke_color="rgba(0, 50, 255, 0.7)",background_image=val, drawing_mode=mode, display_toolbar=True, update_streamlit=True, image_rescale=True, key="doc_annotation" )
 
