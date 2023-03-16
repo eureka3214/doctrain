@@ -172,7 +172,7 @@ if __name__ == "__main__":
             pix = page.get_pixmap(matrix=mat)
             pix.save(val)
             # docImg = val
-            st.write(docImg)
+            # st.write(docImg)
             st.write(val)
             ui_width = st_js.st_javascript("window.innerWidth")
 
