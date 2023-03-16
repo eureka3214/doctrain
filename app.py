@@ -111,17 +111,15 @@ def render_form_mobile(words, labels, result_rects, data_processor):
 
 
 def render_form_element(rect, labels, i, result_rects, data_processor):
-    st.write(f"{i + 1}. {rect['value']}")
-    label_value = result_rects.rects_data['words'][i]['label'] if 'label' in result_rects.rects_data['words'][i] else ''
-    label_value += f" (x:{rect.x1}, y:{rect['y1']}, w:{rect['x2']}, h:{rect['y2']})"
-    label_key = f"label_{i}"
-    label_options = [''] + labels
-    selected_label = st.selectbox("Label", options=label_options, key=label_key, i=labels.i(label_value) if label_value in labels else 0)
-    if selected_label == '':
-        data_processor.remove_key(label_key)
-    else:
-        data_processor.update_key(label_key, selected_label)
+    default_index = 0
+    if rect['label']:
+        default_index = labels.index(rect['label'])
 
+    value = st.text_input("Value", rect['value'], key=f"field_value_{i}",
+                          disabled=False if i == result_rects.current_rect_index else True)
+    label = st.selectbox("Label", labels, key=f"label_{i}", index=default_index,
+                         disabled=False if i == result_rects.current_rect_index else True)
+    data_processor.update_rect_data(result_rects.rects_data, i, value, label)
 
 def canvas_available_width(ui_width):
     # Get ~40% of the available width, if the UI is wider than 500px
