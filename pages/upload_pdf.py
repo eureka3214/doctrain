@@ -5,13 +5,14 @@ import streamlit_javascript as st_js
 # Set page width to half of the screen width
 PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")/2
 
-
 st.title("PDF Viewer")
 
 # File uploader
 pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
-# Page number input
+# Number input field
+page_number = st.sidebar.number_input(
+    "Page number", min_value=1, value=1, step=1)
 
 # Display selected page
 if pdf_file is not None:
@@ -19,18 +20,24 @@ if pdf_file is not None:
     doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
     zoom = 4
     mat = fitz.Matrix(zoom, zoom)
-    count = 0
+    count = doc.page_count  # Use the built-in page count property
     
-    # Count variable is to get the number of pages in the pdf
-    for p in doc:
-        count += 1
-    for i in range(count):
-        val = f"image_{i+1}.png"
-        page = doc.load_page(i)
-        pix = page.get_pixmap(matrix=mat)
-        pix.save(val)
+    # Make sure the selected page number is within bounds
+    page_number = max(1, min(count, page_number))
+    
+    # Extract the selected page as an image
+    val = f"image_{page_number}.png"
+    page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
+    pix = page.get_pixmap(matrix=mat)
+    pix.save(val)
+    
+    # Display the image and the number input field
+    col1, col2 = st.beta_columns([PAGE_WIDTH, PAGE_WIDTH])
+    with col1:
         st.image(val)
-        # st.image(page.get_pixmap(alpha=False), width=PAGE_WIDTH)
+    with col2:
+        page_number = st.number_input(
+            "Page number", min_value=1, max_value=count, value=page_number, step=1)
 
     # Clean up
     doc.close()
