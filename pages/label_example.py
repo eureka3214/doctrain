@@ -25,7 +25,7 @@ def run(img_file, label_data_file):
         stroke_color="rgba(0, 50, 255, 0.7)",
         background_image=img,
         initial_rects=saved_state,
-        drawing_mode="rect",
+        drawing_mode="transform",
         display_toolbar=True,
         update_streamlit=True,
         canvas_width=ui_width,
@@ -64,7 +64,7 @@ if pdf_file is not None:
         page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
         pix = page.get_pixmap(matrix=mat)
         pix.save(val)
-        st.image(val)
+        # st.image(val)
         img_file = val
         label_data_file = "docs/json/download.json"
         run(img_file, label_data_file)
