@@ -172,7 +172,7 @@ if __name__ == "__main__":
             pix = page.get_pixmap(matrix=mat)
             docImg= pix.save(val)
             # docImg = val
-            st.image(docImg)
+            st.image(val)
             ui_width = st_js.st_javascript("window.innerWidth")
 
             if 'saved_state' not in st.session_state:
