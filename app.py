@@ -63,42 +63,51 @@ def run(img_file, rects_file, labels):
         st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
 
     with col2:
-        
-        render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
+        if result_rects is not None:
+        if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
 
-        # if result_rects is not None:
-        #     with st.form(key="fields_form"):
-        #         if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
-        #             st.write("Selected Field: ",
-        #                      result_rects.rects_data['words'][result_rects.current_rect_index]['value'])
-        #             st.markdown("---")
+            current_rect = result_rects.rects_data['words'][result_rects.current_rect_index]
+            with st.form(key="fields_form"):
+                st.write("Selected Field:")
 
-                # submit = st.form_submit_button("Save", type="primary")
-                # if submit:
-                #     with open(rects_file, "w") as f:
-                #         json.dump(result_rects.rects_data, f, indent=2)
-                #     with open(rects_file, "r") as f:
-                #         saved_state = json.load(f)
-                #         st.session_state['saved_state'] = saved_state
-                #     st.write("Saved!")
+                value = st.text_input("Value", current_rect['value'], key=f"field_value_{result_rects.current_rect_index}")
+                label = st.selectbox("Label", labels, key=f"label_{result_rects.current_rect_index}")
+                st.markdown("---")
+                data_processor.update_rect_data(result_rects.rects_data, result_rects.current_rect_index, value, label)
+
+                
+                st.write(current_rect['label'])
+                st.write(current_rect['value'])
+                submit = st.form_submit_button("Save", type="primary")
+                if submit:
+                    with open(rects_file, "w") as f:
+                        json.dump(result_rects.rects_data, f, indent=2)
+                    with open(rects_file, "r") as f:
+                        saved_state = json.load(f)
+                        st.session_state['saved_state'] = saved_state
+                    st.write("Saved!")
+        else:
+            st.write("No field selected.")
+
 
 def render_form_wide(words, labels, result_rects, data_processor):
-    if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
-        current_rect = result_rects.rects_data['words'][result_rects.current_rect_index]
-        with st.form(key="fields_form"):
-            st.write("Selected Field:")
-            st.write(current_rect['label'])
-            st.write(current_rect['value'])
-            submit = st.form_submit_button("Save", type="primary")
-            if submit:
-                with open(rects_file, "w") as f:
-                    json.dump(result_rects.rects_data, f, indent=2)
-                with open(rects_file, "r") as f:
-                    saved_state = json.load(f)
-                    st.session_state['saved_state'] = saved_state
-                st.write("Saved!")
-    else:
-        st.write("No field selected.")
+    col1_form, col2_form, col3_form, col4_form = st.columns([1, 1, 1, 1])
+    num_rows = math.ceil(len(words) / 4)
+
+    for i, rect in enumerate(words):
+        if i < num_rows:
+            with col1_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        elif i < num_rows * 2:
+            with col2_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        elif i < num_rows * 3:
+            with col3_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+        else:
+            with col4_form:
+                render_form_element(rect, labels, i, result_rects, data_processor)
+
 
 
 
