@@ -79,16 +79,15 @@ page_number = st.number_input("Page number", min_value=1, value=1, step=1)
 col1, col2 = st.columns(2)
 with col1:
     val = f"image_{page_number}.png"
-    page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
-    pix = page.get_pixmap(matrix=mat)
-    pix.save(val)
-    # st.image(val)
+    
     img_file = val
     label_data_file = "docs/json/download.json"
     run(img_file, label_data_file)
 
 with col2:
     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)
+    st.image(val)
+
 
     # Extract the selected page as an image
     
