@@ -70,15 +70,8 @@ def run(img_file, rects_file, labels):
                              result_rects.rects_data['words'][result_rects.current_rect_index]['value'])
                     st.markdown("---")
 
-                if ui_width > 1500:
-                    render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
-                elif ui_width > 1000:
-                    render_form_avg(result_rects.rects_data['words'], labels, result_rects, data_processor)
-                elif ui_width > 500:
-                    render_form_narrow(result_rects.rects_data['words'], labels, result_rects, data_processor)
-                else:
-                    render_form_mobile(result_rects.rects_data['words'], labels, result_rects, data_processor)
-
+                # if ui_width > 1500:
+                render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
                 submit = st.form_submit_button("Save", type="primary")
                 if submit:
                     with open(rects_file, "w") as f:
@@ -108,38 +101,6 @@ def render_form_wide(words, labels, result_rects, data_processor):
                 render_form_element(rect, labels, i, result_rects, data_processor)
 
 
-def render_form_avg(words, labels, result_rects, data_processor):
-    col1_form, col2_form, col3_form = st.columns([1, 1, 1])
-    num_rows = math.ceil(len(words) / 3)
-
-    for i, rect in enumerate(words):
-        if i < num_rows:
-            with col1_form:
-                render_form_element(rect, labels, i, result_rects, data_processor)
-        elif i < num_rows * 2:
-            with col2_form:
-                render_form_element(rect, labels, i, result_rects, data_processor)
-        else:
-            with col3_form:
-                render_form_element(rect, labels, i, result_rects, data_processor)
-
-
-def render_form_narrow(words, labels, result_rects, data_processor):
-    col1_form, col2_form = st.columns([1, 1])
-    num_rows = math.ceil(len(words) / 2)
-
-    for i, rect in enumerate(words):
-        if i < num_rows:
-            with col1_form:
-                render_form_element(rect, labels, i, result_rects, data_processor)
-        else:
-            with col2_form:
-                render_form_element(rect, labels, i, result_rects, data_processor)
-
-
-def render_form_mobile(words, labels, result_rects, data_processor):
-    for i, rect in enumerate(words):
-        render_form_element(rect, labels, i, result_rects, data_processor)
 
 
 def render_form_element(rect, labels, i, result_rects, data_processor):
