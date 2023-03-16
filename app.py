@@ -137,5 +137,5 @@ if __name__ == "__main__":
     custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if page_number:
         imval = f"image_{page_number}.png"
-        jval =  f"image_{page_number}.png"
+        jval =  f"json_annot_{page_number}.json"
         run(imval, jval, custom_labels)
