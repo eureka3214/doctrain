@@ -151,8 +151,7 @@ if __name__ == "__main__":
     pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
     # Number input field
-    page_number = st.number_input(
-        "Page number", min_value=1, value=1, step=1)
+   
 
     # Display selected page
     if pdf_file is not None:
@@ -164,6 +163,8 @@ if __name__ == "__main__":
         # page_number = max(1, min(count, page_number))
         # col1, col2 = st.beta_columns([PAGE_WIDTH, PAGE_WIDTH])
         # with col1:
+        page_number = st.number_input(
+        "Page number", min_value=1, value=1, step=1)
         if page_number:
             val = f"image_{page_number}.png"
             page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
