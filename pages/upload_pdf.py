@@ -1,8 +1,9 @@
 import streamlit as st
 import fitz  # PyMuPDF
+import streamlit_javascript as st_js
 
 # Set page width to half of the screen width
-PAGE_WIDTH = int(st.beta_get_window_width() / 2)
+PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")
 
 def main():
     st.title("PDF Viewer")
