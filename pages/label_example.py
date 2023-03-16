@@ -43,7 +43,7 @@ def run(img_file, label_data_file):
             drawing_mode="transform",
             display_toolbar=True,
             update_streamlit=True,
-            canvas_width=canvas_width,
+            canvas_width=canvas_wid,
             doc_height=doc_height,
             doc_width=doc_width,
             image_rescale=True,
