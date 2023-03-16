@@ -33,14 +33,18 @@ def app():
     version = default_data['meta']['version']
     new_version = f"v{float(version[1:])+0.1:.1f}"
     split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
-    
+    cnt=0
     # Add labels dynamically
-    labels = []
-    while st.button("Add Label"):
-        label = st.text_input("Label Name")
+    opts = []
+    while st.button(" + New Label"):
+        cnt+=1
+        label = st.text_input("Label Name", key=cnt)
         if label:
-            labels.append(label)
+            opts.append(label)
     
+    labels = st.multiselect("Labels", options=opts, default=default_data["meta"]["labels"])
+    
+
     new_data = {
         "meta": {
             "version": new_version,
