@@ -63,14 +63,16 @@ def run(img_file, rects_file, labels):
         st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
 
     with col2:
-        if result_rects is not None:
-            with st.form(key="fields_form"):
-                if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
-                    st.write("Selected Field: ",
-                             result_rects.rects_data['words'][result_rects.current_rect_index]['value'])
-                    st.markdown("---")
+        
+        render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
 
-                render_form_wide(result_rects.rects_data['words'], labels, result_rects, data_processor)
+        # if result_rects is not None:
+        #     with st.form(key="fields_form"):
+        #         if result_rects.current_rect_index is not None and result_rects.current_rect_index != -1:
+        #             st.write("Selected Field: ",
+        #                      result_rects.rects_data['words'][result_rects.current_rect_index]['value'])
+        #             st.markdown("---")
+
                 # submit = st.form_submit_button("Save", type="primary")
                 # if submit:
                 #     with open(rects_file, "w") as f:
