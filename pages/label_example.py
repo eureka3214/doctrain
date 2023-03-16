@@ -158,7 +158,7 @@ if __name__ == "__main__":
     if pdf_file is not None:
         # pdf_layout = lp.load_pdf(pdf_file)
         doc =  fitz.open(stream=pdf_file.read(), filetype="pdf")
-        zoom = 4
+        zoom = 1
         mat = fitz.Matrix(zoom, zoom)
         count = doc.page_count  # Use the built-in page count property
         # page_number = max(1, min(count, page_number))
@@ -189,6 +189,7 @@ if __name__ == "__main__":
             width = 2832
             doc_height = docImg.height
             doc_width = docImg.width
+            st.write(doc_height,doc_width)
             if ui_width > 500:
                 canvas_width = math.floor(38 * ui_width / 100)
             else:
