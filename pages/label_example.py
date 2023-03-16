@@ -36,7 +36,6 @@ def run(img_file, label_data_file):
 
 
 # Set page width to half of the screen width
-PAGE_WIDTH =  st_js.st_javascript("window.innerWidth")/2
 
 st.title("PDF Viewer")
 
