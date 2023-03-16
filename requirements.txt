@@ -3,3 +3,4 @@ streamlit-nested-layout
 streamlit-javascript
 streamlit-sparrow-labeling
 Pillow
+PyMuPDF
