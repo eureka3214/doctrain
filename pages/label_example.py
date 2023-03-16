@@ -54,6 +54,8 @@ def run(img_file, label_data_file):
             image_rescale=True,
             key="doc_annotation"
     )
+
+    return result_rects
     
     
     # st.image(img)
