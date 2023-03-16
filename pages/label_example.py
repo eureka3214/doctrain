@@ -162,16 +162,16 @@ if __name__ == "__main__":
         mat = fitz.Matrix(zoom, zoom)
         count = doc.page_count  # Use the built-in page count property
         # page_number = max(1, min(count, page_number))
-        col1, col2 = st.beta_columns([PAGE_WIDTH, PAGE_WIDTH])
-        with col1:
-            val = f"image_{page_number}.png"
-            page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
-            pix = page.get_pixmap(matrix=mat)
-            pix.save(val)
-            # st.image(val)
-            custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
-            run( val, "docs/json/download.json", custom_labels)
-        with col2:
-            page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
+        # col1, col2 = st.beta_columns([PAGE_WIDTH, PAGE_WIDTH])
+        # with col1:
+        val = f"image_{page_number}.png"
+        page = doc.load_page(page_number-1)  # Page numbers start from 0 in PyMuPDF
+        pix = page.get_pixmap(matrix=mat)
+        pix.save(val)
+        # st.image(val)
+        custom_labels = ["", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
+        run( val, "docs/json/download.json", custom_labels)
+        # with col2:
+        #     page_number = st.number_input("Page number", min_value=1, max_value=count, value=page_number, step=1)    
         # Clean up
         doc.close()
