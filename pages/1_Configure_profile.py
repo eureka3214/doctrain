@@ -33,14 +33,14 @@ def app():
 # Increment the version number
     new_version = f"v{float(version[1:])+0.1:.1f}"
 # Update the version number in the JSON
-    data['meta']['version'] = new_version
+    # data['meta']['version'] = new_version
     split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
   
 
     # Construct the new JSON from the input fields
     new_data = {
         "meta": {
-            "version": version,
+            "version": new_version,
             "split": split,
             "image_id": "",
             "image_size": {
