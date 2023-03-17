@@ -74,7 +74,6 @@ def run(img_file, rects_file):
             selected_index = result_rects.current_rect_index
             if selected_index is not None and selected_index != -1:
                 with st.form(key="fields_form"):
-                    
                     selected_rect = result_rects.rects_data['words'][selected_index]
                     re = selected_rect["rect"]
                     x1, y1, x2, y2 = re["x1"], re["y1"], re["x2"], re["y2"]
@@ -89,15 +88,15 @@ def run(img_file, rects_file):
                             json.dump(result_rects.rects_data, f, indent=2)
                         with open(rects_file, "r") as f:
                             saved_state = json.load(f)
-                           
                             st.session_state['saved_state'] = saved_state
                         st.write("Saved!")
-             btn = st.download_button(
-                                                        label="Download image",
-                                                        data=saved_state,
-                                                        file_name=rects_file,
-                                                        mime="application/json"
-                                                    )
+
+                 btn = st.download_button(
+                                    label="Download image",
+                                    data=saved_state,
+                                    file_name=rects_file,
+                                    mime="application/json"
+                                    )
             else:
                 st.write("No field selected.")
 
