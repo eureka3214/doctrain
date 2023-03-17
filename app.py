@@ -135,15 +135,13 @@ if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
     st.write(page_numbers)
 
-    pgnos = st.multiselect('Select one option:', page_numbers,
-                                  format_func=lambda page_number: page_numbers if page_numbers[page_number] else None,
-                                  key='my_multiselect')
+    pgnos = st.multiselect('Select a Page:', page_numbers)
 
 # Update the selected option
     if pgnos:
 
-        for page_number in page_numbers:
-            page_numbers[page_number] = page_number == pgnos[0]
+        # for page_number in page_numbers:
+        #     page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
         # st.write(pgnos)
