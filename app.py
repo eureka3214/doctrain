@@ -134,12 +134,6 @@ def canvas_available_width(ui_width):
 if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
     st.write(page_numbers)
-    pgnos = st.multiselect(
-        "Select pages to display", list(range(len(page_numbers))),
-                                format_func=lambda i: page_numbers[i] if pgnos == i else None
-                                )
-
-
 
     pgnos = st.multiselect('Select one option:', page_numbers=page_numbers.keys(),
                                   format_func=lambda page_number: page_numbers if page_numbers[page_number] else None,
