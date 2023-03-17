@@ -32,21 +32,23 @@ if pdf_file is not None:
         default=list(range(1, count + 1))
     )
 
-    for page_number in page_numbers:
-        col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH])
-        with col1:
-            val = f"image_{page_number}.png"
-            filename = f"json_annot_{page_number}.json"
-            page = doc.load_page(page_number - 1)
-            pix = page.get_pixmap()
-            pix.save(val)
-            st.image(val)
-            data = default_data.copy()
-            data["meta"]["image_id"] = page_number
-            save_json(data, filename)
-            st.success(f"JSON file saved as {filename}")
-        with col2:
-            pass
+    get  = st.button("Add pages")
+    if get:
+        for page_number in page_numbers:
+            col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH])
+            with col1:
+                val = f"image_{page_number}.png"
+                filename = f"json_annot_{page_number}.json"
+                page = doc.load_page(page_number - 1)
+                pix = page.get_pixmap()
+                pix.save(val)
+                st.image(val)
+                data = default_data.copy()
+                data["meta"]["image_id"] = page_number
+                save_json(data, filename)
+                st.success(f"JSON file saved as {filename}")
+            with col2:
+                pass
 
     # Clean up
     doc.close()
