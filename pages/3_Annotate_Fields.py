@@ -146,7 +146,7 @@ if __name__ == "__main__":
         selected_index = page_numbers.index(selected_value)
         # st.write(jsonlist,imagelist)
         jval = jsonlist[selected_index]
-        jval = imagelist[selected_index]
+        imval = imagelist[selected_index]
 
         st.sidebar.write(jval,imval)
 
