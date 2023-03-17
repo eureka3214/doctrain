@@ -38,7 +38,7 @@ def app():
     opts = []
     x = st.text_input("Create New Label")
     if st.button("Add Label"):
-        opts.append(label)
+        opts.append(x)
     
     labels = st.multiselect("Labels", opts)
     
