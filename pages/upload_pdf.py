@@ -32,6 +32,7 @@ if pdf_file is not None:
         list(range(1, count + 1)),
         default=list(range(1, count + 1))
     )
+    session_state.page_numbers = page_numbers
      
     get  = col1.button("Add pages")
     if get:
