@@ -34,12 +34,9 @@ def app():
     new_version = f"v{float(version[1:])+0.1:.1f}"
     split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
     
-    labels = []
-    add = st.button("Add next")
-    for i in range(6):
-        label = st.text_input(f"Label {i+1}")
-        if add:
-            labels.append(label)
+    labels = st.multiselect(
+    'What are Labels you want to annotate in this configuration',
+    ['Objectives', 'Objective', 'Chapter', 'Chapter_name','Topics','Topic_name','Contents','sub_Topics','sub_Topic','sub_Topic_name','sub_Topic_Contents'])
     
     new_data = {
         "meta": {
