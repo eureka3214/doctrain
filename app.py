@@ -12,7 +12,8 @@ st.set_page_config(
     layout="wide"
 )
 
-def run(img_file, rects_file, labels):
+def run(img_file, rects_file):
+
     ui_width = st_js.st_javascript("window.innerWidth")
 
     docImg = Image.open(img_file)
@@ -37,6 +38,7 @@ def run(img_file, rects_file, labels):
 
         doc_height = saved_state['meta']['image_size']['height']
         doc_width = saved_state['meta']['image_size']['width']
+        labels = saved_state['meta']['labels']
 
         canvas_width = canvas_available_width(ui_width)
 
@@ -133,8 +135,8 @@ def canvas_available_width(ui_width):
 
 if __name__ == "__main__":
     page_number = st.number_input("Page number", min_value=1, value=1, step=1)
-    custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
+    # custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if page_number:
         imval = f"image_{page_number}.png"
         jval =  f"json_annot_{page_number}.json"
-        run(imval, jval, custom_labels)
+        run(imval, jval)
