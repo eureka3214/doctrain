@@ -60,10 +60,7 @@ def run(img_file, rects_file):
             key="doc_annotation"
         )
 
-        st.caption("Check 'Assign Labels' to enable editing of labels and values, move and resize the boxes to "
-                   "annotate the document.")
-        st.caption("Add annotations by clicking and dragging on the document, when 'Assign Labels' is unchecked.")
-
+    
     with col2:
 
         if result_rects is not None:
