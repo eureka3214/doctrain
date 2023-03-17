@@ -37,7 +37,7 @@ def app():
     
     labels = st.multiselect(
     'What are Labels you want to annotate in this configuration',
-    ['Objectives', 'Objective', 'Chapter', 'Chapter_name','Topics','Topic_name','Contents','sub_Topics','sub_Topic','sub_Topic_name','sub_Topic_Contents'])
+    ['Header','Footer','Objectives', 'Objective', 'Chapter', 'Chapter_name','Topics','Topic_name','Contents','sub_Topics','sub_Topic','sub_Topic_name','sub_Topic_Contents'])
     
     new_data = {
         "meta": {
