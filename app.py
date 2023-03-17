@@ -91,14 +91,10 @@ def run(img_file, rects_file):
                             st.session_state['saved_state'] = saved_state
                         st.write("Saved!")
 
-            btn = st.download_button(
-                                    label="Download image",
-                                    data=saved_state,
-                                    file_name=rects_file,
-                                    mime="application/json"
-                                    )
             else:
                 st.write("No field selected.")
+                btn = st.download_button( label="Download image",data=saved_state, file_name=rects_file, mime="application/json" )
+
 
 
 def render_form_wide(words, labels, result_rects, data_processor):
