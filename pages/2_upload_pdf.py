@@ -38,7 +38,7 @@ if pdf_file is not None:
      
     get  = col1.button("Add pages")
     if get:
-        session_state.page_numbers = page_numbers
+        # session_state.page_numbers = page_numbers
         with col2:
             imagelist =[]
             jsonlist =[]
