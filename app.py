@@ -141,6 +141,7 @@ if __name__ == "__main__":
     if pgnos:
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
+        st.write(pgnos)
 
         st.write(jsonlist,imagelist)
         jval = jsonlist[imval.index]
