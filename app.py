@@ -6,7 +6,7 @@ from streamlit_sparrow_labeling import st_sparrow_labeling
 from streamlit_sparrow_labeling import DataProcessor
 import json
 import math
-
+import base64
 session_state = st.session_state
 st.set_page_config(
     page_title="Sparrow Labeling",
@@ -14,6 +14,12 @@ st.set_page_config(
 )
 
 def run(img_file, rects_file):
+    def download_button(data):
+        json_data = json.dumps(data, indent=4)
+        b64 = base64.b64encode(json_data.encode()).decode()
+        href = f'<a href="data:application/octet-stream;base64,{b64}" download="data.json">Download JSON File</a>'
+        st.markdown(href, unsafe_allow_html=True)
+
 
     ui_width = st_js.st_javascript("window.innerWidth")
 
@@ -83,6 +89,12 @@ def run(img_file, rects_file):
                             json.dump(result_rects.rects_data, f, indent=2)
                         with open(rects_file, "r") as f:
                             saved_state = json.load(f)
+                            btn = st.download_button(
+                                                        label="Download image",
+                                                        data=saved_state,
+                                                        file_name=rects_file,
+                                                        mime="application/json"
+                                                    )
                             st.session_state['saved_state'] = saved_state
                         st.write("Saved!")
             else:
