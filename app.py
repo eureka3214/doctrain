@@ -22,9 +22,6 @@ def run(img_file, rects_file):
     # if 'saved_state' not in st.session_state:
     with open(rects_file, "r") as f:
         saved_state = json.load(f)
-            # st.session_state['saved_state'] = saved_state
-    # else:
-        # saved_state = st.session_state['saved_state']
 
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
@@ -87,9 +84,7 @@ def run(img_file, rects_file):
 
             else:
                 st.write("No field selected.")
-                saved_state =  st.session_state['saved_state']
-                btn = st.download_button( label="Download json",data=saved_state, mime="application/json" )
-
+               
 
 
 def render_form_wide(words, labels, result_rects, data_processor):
@@ -141,8 +136,6 @@ if __name__ == "__main__":
 # Update the selected option
     if pgnos:
 
-        # for page_number in page_numbers:
-        #     page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
         # st.write(pgnos)
