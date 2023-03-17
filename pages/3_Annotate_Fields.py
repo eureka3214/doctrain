@@ -7,7 +7,7 @@ from streamlit_sparrow_labeling import DataProcessor
 import json
 import math
 
-session_state = st.session_state
+
 st.set_page_config(
     page_title="Sparrow Labeling",
     layout="wide"
@@ -132,6 +132,7 @@ def canvas_available_width(ui_width):
 
 
 if __name__ == "__main__":
+    session_state = st.session_state
     page_numbers  = session_state.page_numbers
     pgnos = st.multiselect('Select a Page:', page_numbers)
 
