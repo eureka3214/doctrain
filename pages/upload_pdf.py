@@ -14,13 +14,13 @@ def save_json(data, filename):
 st.title("Paste profile configurations and Upload PDF")
 
 
-json_string = st.text_area("Enter JSON string")
-
+json_string = st.text_area("Paste Profile Configuration ")
+if st.button("Upload Config"):
 # Parse the JSON string and save it to a variable
-try:
-    default_data = json.loads(json_string)
-except json.JSONDecodeError:
-    st.error("Invalid JSON string")
+    try:
+        default_data = json.loads(json_string)
+    except json.JSONDecodeError:
+        st.error("Invalid JSON string")
 
 
 # File uploader

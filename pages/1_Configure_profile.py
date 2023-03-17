@@ -4,6 +4,7 @@ import streamlit as st
 default_data = {
     "meta": {
         "version": "v0.1",
+        "split": "train",
         "name": "Indian Bank Structure",
         "labels": [
             ""
@@ -32,7 +33,7 @@ default_data = {
 def app():
     version = default_data['meta']['version']
     new_version = f"v{float(version[1:])+0.1:.1f}"
-    split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
+    name = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
     
     labels = st.multiselect(
     'What are Labels you want to annotate in this configuration',
@@ -41,7 +42,8 @@ def app():
     new_data = {
         "meta": {
             "version": new_version,
-            "name": split,
+            "split": "train",
+            "name": name,
             "labels": labels,
             "image_id": "",
             "image_size": {
