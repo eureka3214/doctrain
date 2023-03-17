@@ -142,7 +142,8 @@ if __name__ == "__main__":
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
         # st.write(pgnos)
-        selected_index = pgnos.index(page_numbers)
+        selected_value = pgnos[0]
+        selected_index = page_numbers.index(selected_value)
         # st.write(jsonlist,imagelist)
         jval = jsonlist[selected_index]
         imval = imagelist[selected_index]
