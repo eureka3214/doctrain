@@ -133,7 +133,7 @@ def canvas_available_width(ui_width):
 
 if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
-    pgnos = st.multiselect(
+    pgnos = st.select(
         "Select pages to display",
         page_numbers
     )
@@ -142,6 +142,6 @@ if __name__ == "__main__":
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
 
-        imval = st.select("Select An Image", imagelist)
+        imval = imagelist[pgnos]
         jval = jsonlist[imval.index]
         run(imval, jval)
