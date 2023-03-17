@@ -35,10 +35,13 @@ if pdf_file is not None:
      
     get  = col1.button("Add pages")
     if get:
+        session_state.page_numbers = page_numbers
         with col2:
+            imagelist =[]
+            jsonlist =[]
             for page_number in page_numbers:
                 val = f"image_{page_number}.png"
-                filename = f"json_annot_{page_number}.json"
+                filename = f"image_{page_number}.json"
                 page = doc.load_page(page_number - 1)
                 pix = page.get_pixmap()
                 pix.save(val)
@@ -46,7 +49,11 @@ if pdf_file is not None:
                 data = default_data.copy()
                 data["meta"]["image_id"] = page_number
                 save_json(data, filename)
+                imagelist.append(val)
+                jsonlist.append(filename)
                 st.success(f"JSON file saved as {filename}")
+            session_state.imagelist = imagelist
+            session_state.jsonlist = jsonlist
                
 
     # Clean up

@@ -131,9 +131,16 @@ def canvas_available_width(ui_width):
 
 
 if __name__ == "__main__":
-    page_number = st.number_input("Page number", min_value=1, value=1, step=1)
+    page_numbers  = session_state.page_numbers
+    pgnos = st.multiselect(
+        "Select pages to display",
+        page_numbers
+    )
     # custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
-    if page_number:
-        imval = f"image_{page_number}.png"
-        jval =  f"json_annot_{page_number}.json"
+    if pgnos:
+        jsonlist = session_state.jsonlist
+        imagelist = session_state.imagelist
+
+        imval = st.select("Select An Image", imagelist)
+        jval = jsonlist[imval.index]
         run(imval, jval)
