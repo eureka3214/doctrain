@@ -93,7 +93,8 @@ def run(img_file, rects_file):
 
             else:
                 st.write("No field selected.")
-                btn = st.download_button( label="Download image",data=saved_state, file_name=rects_file, mime="application/json" )
+                saved_state =  st.session_state['saved_state']
+                btn = st.download_button( label="Download json",data=saved_state, mime="application/json" )
 
 
 
