@@ -32,7 +32,7 @@ if pdf_file is not None:
         default=list(range(1, count + 1))
     )
     col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH]) 
-    col1.get  = st.button("Add pages")
+    get  = col1.button("Add pages")
     if get:
         with col2:
             for page_number in page_numbers:
