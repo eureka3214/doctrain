@@ -133,8 +133,6 @@ def canvas_available_width(ui_width):
 
 if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
-    st.write(page_numbers)
-
     pgnos = st.multiselect('Select a Page:', page_numbers)
 
 # Update the selected option
