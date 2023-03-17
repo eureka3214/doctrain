@@ -62,4 +62,4 @@ if st.button("Upload Config"):
         # Display the image and the number input field
         
         # Clean up
-        doc.close()
+            doc.close()
