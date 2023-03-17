@@ -146,9 +146,8 @@ if __name__ == "__main__":
                                   key='my_multiselect')
 
 # Update the selected option
-if selected_options:
-    # custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if pgnos:
+        
         for page_number in page_numbers:
             page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
