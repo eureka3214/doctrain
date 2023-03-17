@@ -143,6 +143,8 @@ if __name__ == "__main__":
         #     page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
+        st.sidebar.write(page_numbers,jsonlist,imagelist)
+
         # st.write(pgnos)
         selected_value = pgnos[0]
         selected_index = page_numbers.index(selected_value)
