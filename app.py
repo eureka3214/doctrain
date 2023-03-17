@@ -138,8 +138,19 @@ if __name__ == "__main__":
         "Select pages to display", list(range(len(page_numbers))),
                                 format_func=lambda i: page_numbers[i] if pgnos == i else None
                                 )
+
+
+
+    pgnos = st.multiselect('Select one option:', page_numbers=page_numbers.keys(),
+                                  format_func=lambda page_number: page_numbers if page_numbers[page_number] else None,
+                                  key='my_multiselect')
+
+# Update the selected option
+if selected_options:
     # custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if pgnos:
+        for page_number in page_numbers:
+            page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
         # st.write(pgnos)
