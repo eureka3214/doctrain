@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
 # Update the selected option
     if pgnos:
-        
+
         for page_number in page_numbers:
             page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
