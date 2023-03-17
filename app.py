@@ -14,12 +14,6 @@ st.set_page_config(
 )
 
 def run(img_file, rects_file):
-    def download_button(data):
-        json_data = json.dumps(data, indent=4)
-        b64 = base64.b64encode(json_data.encode()).decode()
-        href = f'<a href="data:application/octet-stream;base64,{b64}" download="data.json">Download JSON File</a>'
-        st.markdown(href, unsafe_allow_html=True)
-
 
     ui_width = st_js.st_javascript("window.innerWidth")
 
