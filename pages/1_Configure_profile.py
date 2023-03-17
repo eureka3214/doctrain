@@ -35,9 +35,10 @@ def app():
     split = st.text_input("Meta Config Profile Name", default_data["meta"]["name"])
     
     labels = []
+    add = st.button("Add next")
     for i in range(6):
         label = st.text_input(f"Label {i+1}")
-        if st.button("Add next"):
+        if add:
             labels.append(label)
     
     new_data = {
