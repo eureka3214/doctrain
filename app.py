@@ -89,14 +89,15 @@ def run(img_file, rects_file):
                             json.dump(result_rects.rects_data, f, indent=2)
                         with open(rects_file, "r") as f:
                             saved_state = json.load(f)
-                            btn = st.download_button(
+                           
+                            st.session_state['saved_state'] = saved_state
+                        st.write("Saved!")
+             btn = st.download_button(
                                                         label="Download image",
                                                         data=saved_state,
                                                         file_name=rects_file,
                                                         mime="application/json"
                                                     )
-                            st.session_state['saved_state'] = saved_state
-                        st.write("Saved!")
             else:
                 st.write("No field selected.")
 
