@@ -37,7 +37,8 @@ def run(img_file, rects_file):
         doc_height = saved_state['meta']['image_size']['height']
         doc_width = saved_state['meta']['image_size']['width']
         labels = saved_state['meta']['labels']
-
+        session_state['labels'] = labels
+        labels = session_state['labels']
         canvas_width = canvas_available_width(ui_width)
 
         result_rects = st_sparrow_labeling(
