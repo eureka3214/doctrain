@@ -3,6 +3,8 @@ import fitz  # PyMuPDF
 import streamlit_javascript as st_js
 import json
 
+
+session_state = st.session_state
 # Set page width to half of the screen width
 PAGE_WIDTH = st_js.st_javascript("window.innerWidth")/2
 

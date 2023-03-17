@@ -7,6 +7,7 @@ from streamlit_sparrow_labeling import DataProcessor
 import json
 import math
 
+session_state = st.session_state
 st.set_page_config(
     page_title="Sparrow Labeling",
     layout="wide"
