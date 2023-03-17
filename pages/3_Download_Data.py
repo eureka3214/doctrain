@@ -20,7 +20,7 @@ def download_multiple_files(json_files):
             archive.writestr(json_file, data)
     compressed_file.seek(0)
     b64 = base64.b64encode(compressed_file.getvalue()).decode()
-    href = f'<a href="data:application/zip;base64,{b64}" download="multiple_files.zip">Download JSON Files</a>'
+    href = f'<a href="data:application/zip;base64,{b64}" download="JSONAnnotations.zip">Download JSON Files</a>'
     st.markdown(href, unsafe_allow_html=True)
 
 # Display the download button
