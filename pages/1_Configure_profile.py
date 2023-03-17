@@ -37,7 +37,7 @@ def app():
     labels = []
     for i in range(6):
         label = st.text_input(f"Label {i+1}")
-        if label:
+        if st.button("Add next"):
             labels.append(label)
     
     new_data = {
