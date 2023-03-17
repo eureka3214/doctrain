@@ -135,7 +135,7 @@ if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
     st.write(page_numbers)
 
-    pgnos = st.multiselect('Select one option:', page_numbers
+    pgnos = st.multiselect('Select one option:', page_numbers,
                                   format_func=lambda page_number: page_numbers if page_numbers[page_number] else None,
                                   key='my_multiselect')
 
