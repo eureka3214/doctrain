@@ -33,8 +33,8 @@ def run(img_file, rects_file):
     col1, col2 = st.columns([6, 4])
 
     with col1:
-        height = 1296
-        width = 864
+        height = 1555
+        width = 1037
 
         doc_height = saved_state['meta']['image_size']['height']
         doc_width = saved_state['meta']['image_size']['width']
