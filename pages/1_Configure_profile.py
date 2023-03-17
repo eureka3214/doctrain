@@ -36,16 +36,11 @@ def app():
     cnt=0
     # Add labels dynamically
     opts = []
-    while st.button("New Label"):
-
-        cnt+=1
-        label = st.text_input("Label Name", key=cnt)
-        if label:
-
-            opts.append(label)
-
+    x = st.text_input("Create New Label")
+    if st.button("Add Label"):
+        opts.append(label)
     
-    labels = st.multiselect("Labels", options=opts)
+    labels = st.multiselect("Labels", opts)
     
 
     new_data = {
