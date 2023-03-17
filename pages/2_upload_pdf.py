@@ -38,7 +38,7 @@ if pdf_file is not None:
      
     get  = col1.button("Add pages")
     if get:
-        # session_state.page_numbers = page_numbers
+        session_state.page_numbers = page_numbers
         with col2:
             imagelist =[]
             jsonlist =[]
@@ -57,7 +57,7 @@ if pdf_file is not None:
                 st.success(f"JSON file saved as {filename}")
             session_state.imagelist = imagelist
             session_state.jsonlist = jsonlist
-               
+            session_state.page_numbers = page_numbers
 
     # Clean up
     doc.close()
