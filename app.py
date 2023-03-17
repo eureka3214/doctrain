@@ -134,9 +134,9 @@ def canvas_available_width(ui_width):
 if __name__ == "__main__":
     page_numbers  = session_state.page_numbers
     pgnos = st.multiselect(
-        "Select pages to display",
-        page_numbers
-    )
+        "Select pages to display", list(range(len(page_numbers))),
+                                format_func=lambda i: options[i] if pgnos == i else None,
+                                key='my_multiselect')
     # custom_labels = ["","Header", "paragraph", "Topic", "Subtopic", "Objective", "SubtopicContents"]
     if pgnos:
         jsonlist = session_state.jsonlist
