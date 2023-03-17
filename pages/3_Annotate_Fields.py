@@ -19,13 +19,9 @@ def run(img_file, rects_file):
 
     docImg = Image.open(img_file)
 
-    # if 'saved_state' not in st.session_state:
     with open(rects_file, "r") as f:
         saved_state = json.load(f)
-            # st.session_state['saved_state'] = saved_state
-    # else:
-        # saved_state = st.session_state['saved_state']
-
+     
     assign_labels = st.checkbox("Assign Labels", True)
     mode = "transform" if assign_labels else "rect"
 
@@ -143,13 +139,15 @@ if __name__ == "__main__":
         #     page_numbers[page_number] = page_number == pgnos[0]
         jsonlist = session_state.jsonlist
         imagelist = session_state.imagelist
-        st.sidebar.write(page_numbers,jsonlist,imagelist)
+        # st.sidebar.write(page_numbers,jsonlist,imagelist)
 
         # st.write(pgnos)
         selected_value = pgnos[0]
         selected_index = page_numbers.index(selected_value)
         # st.write(jsonlist,imagelist)
         jval = jsonlist[selected_index]
-        imval = imagelist[selected_index]
+        jval = imagelist[selected_index]
+
+        st.sidebar.write(jval,jval)
 
         run(imval, jval)
