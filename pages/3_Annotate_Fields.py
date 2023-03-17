@@ -148,6 +148,6 @@ if __name__ == "__main__":
         jval = jsonlist[selected_index]
         imval = imagelist[selected_index]
 
-        st.sidebar.write(jval,imval)
+        st.write(jval,imval)
 
         run(imval, jval)
