@@ -26,12 +26,13 @@ pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 if pdf_file is not None:
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
     count = doc.page_count
-    page_numbers = st.multiselect(
+    col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH])
+    page_numbers = col1.multiselect(
         "Select pages to display",
         list(range(1, count + 1)),
         default=list(range(1, count + 1))
     )
-    col1, col2 = st.columns([PAGE_WIDTH, PAGE_WIDTH]) 
+     
     get  = col1.button("Add pages")
     if get:
         with col2:
